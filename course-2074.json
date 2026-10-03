@@ -2,8 +2,8 @@
   "schema": 1,
   "courseId": 2074,
   "repository": "LearningOS/2026a-oscamp-base-wei-zhuang677",
-  "commit": "929f08d6bb8a3f610b245b1f333e968c3fbdd23d",
-  "score": 3,
+  "commit": "7503b905607859721ca82ee1560c2c4b39a920f0",
+  "score": 7,
   "totalScore": 100,
   "exercises": [
     {
@@ -16,9 +16,9 @@
     {
       "name": "mutex_counter",
       "max": 4,
-      "score": 0,
-      "status": "fail",
-      "exitCode": 101
+      "score": 4,
+      "status": "pass",
+      "exitCode": 0
     },
     {
       "name": "channel",
@@ -176,9 +176,9 @@
     }
   ],
   "student": "wei-zhuang677",
-  "runId": "37128800958",
+  "runId": "37146041792",
   "runAttempt": "1",
   "upload": {
-    "status": "accepted"
+    "status": "pending"
   }
 }
