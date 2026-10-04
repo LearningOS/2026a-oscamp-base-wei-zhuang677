@@ -53,7 +53,13 @@ pub fn run_command(program: &str, args: &[&str]) -> String {
     // TODO: Set stdout to Stdio::piped()
     // TODO: Execute with .output() and get output
     // TODO: Convert stdout to String and return
-    todo!()
+    let output = Command::new(program)
+        .args(args)
+        .stdout(Stdio::piped())
+        .output()
+        .unwrap();
+
+    String::from_utf8_lossy(&output.stdout).to_string()
 }
 
 /// Write data to child process (cat) stdin via pipe and read its stdout output.
@@ -89,7 +95,23 @@ pub fn pipe_through_cat(input: &str) -> String {
     // TODO: Write input to child process stdin
     // TODO: Drop stdin to close pipe (otherwise cat won't exit)
     // TODO: Read output from child process stdout
-    todo!()
+    let mut child = Command::new("cat")
+        .stdin(Stdio::piped())
+        .stdout(Stdio::piped())
+        .spawn()
+        .unwrap();
+    let mut child_stdin = child.stdin.take().unwrap();
+    child_stdin
+        .write_all(input.as_bytes())
+        .unwrap();
+    drop(child_stdin);
+    let mut child_stdout = child.stdout.take().unwrap();
+    let mut output = String::new();
+    child_stdout
+        .read_to_string(&mut output)
+        .unwrap();
+    child.wait();
+    output
 }
 
 /// Get child process exit code.
@@ -110,7 +132,12 @@ pub fn get_exit_code(command: &str) -> i32 {
     // TODO: Use Command::new("sh").args(["-c", command])
     // TODO: Execute and get status
     // TODO: Return exit code
-    todo!()
+    Command::new("sh")
+        .args(["-c",command])
+        .status()
+        .unwrap()
+        .code()
+        .unwrap()
 }
 
 /// Execute the given shell command and return its stdout output as a `Result`.
@@ -137,7 +164,13 @@ pub fn run_command_with_result(program: &str, args: &[&str]) -> io::Result<Strin
     // TODO: Set stdout to Stdio::piped()
     // TODO: Execute with .output() and handle Result
     // TODO: Convert stdout to String with from_utf8, mapping errors to io::Error
-    todo!()
+    let  output = Command::new(program)
+        .args(args)
+        .stdout(Stdio::piped())
+        .output()?;
+    let stdout = String::from_utf8(output.stdout)
+        .map_err(|_utf_err| io::Error::new(io::ErrorKind::InvalidData, "stdout is not valid UTF-8"))?;
+    Ok(stdout)
 }
 
 /// Interact with `grep` via bidirectional pipes, filtering lines that contain a pattern.
@@ -167,7 +200,24 @@ pub fn pipe_through_grep(pattern: &str, input: &str) -> String {
     // TODO: Drop stdin to close pipe
     // TODO: Read output from child stdout line by line
     // TODO: Collect and return matching lines
-    todo!()
+    let mut child = Command::new("grep")
+        .arg(pattern)
+        .stdin(Stdio::piped())
+        .stdout(Stdio::piped())
+        .spawn()
+        .unwrap();
+    let mut ch_in = child.stdin.take().unwrap();
+    ch_in
+        .write_all(input.as_bytes())
+        .unwrap();
+    drop(ch_in);
+    let mut ch_out = child.stdout.take().unwrap();
+    let mut string =String::new();
+    ch_out
+        .read_to_string(&mut string)
+        .unwrap();
+    child.wait();
+    string
 }
 
 #[cfg(test)]
