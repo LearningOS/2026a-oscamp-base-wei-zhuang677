@@ -2,8 +2,8 @@
   "schema": 1,
   "courseId": 2074,
   "repository": "LearningOS/2026a-oscamp-base-wei-zhuang677",
-  "commit": "8cda93369aa142cc465b560ba576c290be2ad51f",
-  "score": 15,
+  "commit": "90c5794e1b622c8e3093ac254f485b33d79a8a05",
+  "score": 24,
   "totalScore": 100,
   "exercises": [
     {
@@ -37,16 +37,16 @@
     {
       "name": "mem_primitives",
       "max": 4,
-      "score": 0,
-      "status": "fail",
-      "exitCode": 101
+      "score": 4,
+      "status": "pass",
+      "exitCode": 0
     },
     {
       "name": "bump_allocator",
       "max": 5,
-      "score": 0,
-      "status": "fail",
-      "exitCode": 101
+      "score": 5,
+      "status": "pass",
+      "exitCode": 0
     },
     {
       "name": "free_list_allocator",
@@ -176,9 +176,9 @@
     }
   ],
   "student": "wei-zhuang677",
-  "runId": "37184913128",
+  "runId": "37203379114",
   "runAttempt": "1",
   "upload": {
-    "status": "accepted"
+    "status": "pending"
   }
 }
