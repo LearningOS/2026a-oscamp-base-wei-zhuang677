@@ -2,8 +2,8 @@
   "schema": 1,
   "courseId": 2074,
   "repository": "LearningOS/2026a-oscamp-base-wei-zhuang677",
-  "commit": "64c0192f28c6f09d81effd8565d8cfc7bf7bdcc5",
-  "score": 72,
+  "commit": "0a5fd21e19914623ded3e6ff920bccd115ce94c9",
+  "score": 76,
   "totalScore": 100,
   "exercises": [
     {
@@ -121,9 +121,9 @@
     {
       "name": "basic_future",
       "max": 4,
-      "score": 0,
-      "status": "fail",
-      "exitCode": 101
+      "score": 4,
+      "status": "pass",
+      "exitCode": 0
     },
     {
       "name": "tokio_tasks",
@@ -176,9 +176,9 @@
     }
   ],
   "student": "wei-zhuang677",
-  "runId": "38559860518",
+  "runId": "38678411240",
   "runAttempt": "1",
   "upload": {
-    "status": "accepted"
+    "status": "pending"
   }
 }
